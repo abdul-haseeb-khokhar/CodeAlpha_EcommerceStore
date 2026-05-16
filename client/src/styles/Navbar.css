@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 16px 40px;
   background: var(--card-bg);
   border-bottom: 1px solid var(--border);
@@ -53,4 +54,21 @@
 .navbar-user {
   color: var(--text-muted);
   font-size: 14px;
+}
+
+.navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.navbar-profile svg {
+    color: var(--primary);
+}
+
+.navbar-profile span {
+    font-size: 14px;
+    font-weight: 500;
 }

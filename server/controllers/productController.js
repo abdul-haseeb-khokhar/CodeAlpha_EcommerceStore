@@ -3,6 +3,7 @@ const Product = require('../models/Product');
 // @route  GET /api/products
 // @access Public
 const getProducts = async (req, res) => {
+  console.log('getProduct is called')
   try {
     const { category, search } = req.query;
 

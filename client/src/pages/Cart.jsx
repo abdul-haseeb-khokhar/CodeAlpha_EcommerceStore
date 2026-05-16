@@ -82,7 +82,7 @@ const Cart = () => {
                             <div className="cart-item-qty">
                                 <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id,item.qunatity-1)}>-</button>
                                 <span>{item.qunatity}</span>
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id), item.qunatity+1}></button>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id,item.qunatity+1)}></button>
                             </div>
 
                             <p className="cart-item-total">

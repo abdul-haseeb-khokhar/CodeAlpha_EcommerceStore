@@ -17,9 +17,10 @@ const Home = () => {
             if(search) query += `search=${search}`
             if(category) query += `category=${category}`
 
-            const data = await fetchClient(`/products${query}`)
+            const data = await fetchClient(`/products?${query}`)
             setProducts(data)
         } catch(err) {
+            console.log(err)
             setError(err.message)
         }finally {
             setLoading(false)
@@ -57,9 +58,9 @@ const Home = () => {
 
             {loading && <p className="state-msg">Loading products</p>}
             {error && <p className="error-msg">{error}</p>}
-            {!loading && products.length === 0} && (
+            {!loading && products.length === 0 && (
                 <p className="state-msg">No products found</p>
-            )
+            )}
 
             <div className="product-grid">
                 {products.map(product => (

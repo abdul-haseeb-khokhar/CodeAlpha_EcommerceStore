@@ -2,7 +2,7 @@ import {data, useNavigate} from 'react-router-dom'
 import {useAuth} from '../context/AuthContext'
 import {fetchClient} from '../api/fetchClient'
 import useCartStore from '../store/cartStore'
-import '../styles/PorductCart.css'
+import '../styles/ProductCard.css'
 
 const ProductCard = ({product}) => {
     const {user} = useAuth()

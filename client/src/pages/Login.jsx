@@ -23,7 +23,7 @@ const login = () => {
             const data = await fetchClient('/auth/login', {
                 method: 'Post', body: JSON.stringify({email, password})
             })
-
+            console.log(data)
             login(data)
             navigate('/')
         } catch (err) {
