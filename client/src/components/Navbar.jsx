@@ -50,12 +50,17 @@ const Navbar = () => {
                                 </>
                             ) : (
                                 <>
-                                    <Link to='/login'>Login</Link>
-                                    <Link to='/register' className="btn btn-primary">Register</Link>
+                                    <Link to='/admin' className="admin-link">Admin Panel</Link>
+                                    <button className="btn btn-outline" onClick={handleLogout}>
+                                        Logout
+                                    </button>
                                 </>
-                            )}</>) : (
+                            )
+                            }
+                        </>) : (
                         <>
-                            <Link to='/admin' className="admin-link">Admin Panel</Link>
+                            <Link to='/login'>Login</Link>
+                            <Link to='/register' className="btn btn-primary">Register</Link>
                         </>
                     )}
             </div>
