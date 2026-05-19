@@ -25,12 +25,13 @@ const Cart = () => {
 
     }, [])
 
-    const handleQuantityChange = async (productId, qunatity) => {
+    const handleQuantityChange = async (productId, quantity) => {
         try {
             const data = await fetchClient(`/cart/${productId}`, {
                 method: 'PUT',
-                body: JSON.stringify({qunatity})
+                body: JSON.stringify({ quantity })
             })
+            setCart(data.items)
         } catch (error) {
             setError(error.message)
         }
@@ -38,7 +39,7 @@ const Cart = () => {
 
     const handleRemove = async (productId) => {
         try {
-            const data = await fetchClient(`/cart/${productId}`,{
+            const data = await fetchClient(`/cart/${productId}`, {
                 method: 'DELETE'
             })
 
@@ -48,10 +49,9 @@ const Cart = () => {
         }
     }
 
-    if(loading) return <p className="state-msg">Loading...</p>
-    if(error) return <p className="error-msg" style={{padding: '40px'}}>{error}</p>
+    if (loading) return <p className="state-msg">Loading...</p>
 
-    if(items.length === 0) {
+    if (items.length === 0) {
         return (
             <div className="page-container">
                 <div className="empty-cart">
@@ -63,10 +63,14 @@ const Cart = () => {
             </div>
         )
     }
-    return(
+
+    console.log(items)
+    return (
         <div className="page-container">
             <h2 className="page-title">Your Cart</h2>
-
+            {error && (
+                <p className="error-msg" style={{ padding: '40px' }}>{error}</p>
+            )}
             <div className="cart-wrapper">
                 <div className="cart-items">
                     {items.map(item => (
@@ -80,13 +84,13 @@ const Cart = () => {
                             </div>
 
                             <div className="cart-item-qty">
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id,item.qunatity-1)}>-</button>
-                                <span>{item.qunatity}</span>
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id,item.qunatity+1)}></button>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id, item.quantity - 1)}>-</button>
+                                <span>{item.quantity}</span>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id, item.quantity + 1)}>+</button>
                             </div>
 
                             <p className="cart-item-total">
-                                ${(item.product.price * item.qunatity).toFixed(2)}
+                                ${(item.product.price * item.quantity).toFixed(2)}
                             </p>
 
                             <button className="btn btn-danger" onClick={() => handleRemove(item.product._id)}>Remove</button>
@@ -111,11 +115,11 @@ const Cart = () => {
                         <span>${totalPrice.toFixed(2)}</span>
                     </div>
 
-                    <button className="btn btn-primary" style={{width: '100%', marginTop: '20px'}} onClick={() => navigate('/checkout')}>
+                    <button className="btn btn-primary" style={{ width: '100%', marginTop: '20px' }} onClick={() => navigate('/checkout')}>
                         Proceed to Checkout
                     </button>
 
-                    <button className="btn btn-primary" style={{ width: '100%', marginTop: '10px'}} onClick={() =>  navigate('/')}>
+                    <button className="btn btn-primary" style={{ width: '100%', marginTop: '10px' }} onClick={() => navigate('/')}>
                         Continue Shopping
                     </button>
                 </div>

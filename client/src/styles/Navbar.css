@@ -74,6 +74,7 @@
 }
 
 .admin-link {
-  color: var(--danger) !important;
-  font-weight: 700 !important;
+  color: black;
+  font-weight: 500 !important;
+  font-weight: 600;
 }

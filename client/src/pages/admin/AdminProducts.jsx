@@ -46,7 +46,7 @@ const AdminProducts = () => {
 
         try{
             if(editingId){
-                await fetchClient(`products/${editingId}`,{
+                await fetchClient(`/products/${editingId}`,{
                     method: 'PUT',
                     body: JSON.stringify({
                         ...form,
@@ -69,6 +69,7 @@ const AdminProducts = () => {
             setEditingId(null)
             fetchProducts()
         } catch (err) {
+            con
             setFormError(err.message)
         } finally {
             setFormLoading (false)

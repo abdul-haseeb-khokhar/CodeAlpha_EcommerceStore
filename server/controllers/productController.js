@@ -66,6 +66,7 @@ const createProduct = async (req, res) => {
 // @route  PUT /api/products/:id
 // @access Admin only
 const updateProduct = async (req, res) => {
+  console.log('Update Product function is called')
   try {
     const product = await Product.findById(req.params.id);
 
@@ -86,6 +87,7 @@ const updateProduct = async (req, res) => {
     const updatedProduct = await product.save();
     res.json(updatedProduct);
   } catch (error) {
+    console.error('Update product err: ', error.message)
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };

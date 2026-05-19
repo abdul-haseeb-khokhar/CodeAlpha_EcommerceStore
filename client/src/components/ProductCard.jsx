@@ -1,26 +1,26 @@
-import {data, useNavigate} from 'react-router-dom'
-import {useAuth} from '../context/AuthContext'
-import {fetchClient} from '../api/fetchClient'
+import { data, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import { fetchClient } from '../api/fetchClient'
 import useCartStore from '../store/cartStore'
 import '../styles/ProductCard.css'
 
-const ProductCard = ({product}) => {
-    const {user} = useAuth()
-    const {setCart} = useCartStore()
-    const navigate  = useNavigate()
+const ProductCard = ({ product }) => {
+    const { user } = useAuth()
+    const { setCart } = useCartStore()
+    const navigate = useNavigate()
 
-    const handleAddToCart = async(e) => {
+    const handleAddToCart = async (e) => {
         e.stopPropagation()
 
-        if(!user) {
+        if (!user) {
             navigate('/login')
             return
         }
 
-        try{
-            const data = await fetchClient('/cart',{
+        try {
+            const data = await fetchClient('/cart', {
                 method: 'POST',
-                body: JSON.stringify({productId: product._id, quantity: 1})
+                body: JSON.stringify({ productId: product._id, quantity: 1 })
             })
             setCart(data.items)
         } catch (err) {
@@ -31,7 +31,7 @@ const ProductCard = ({product}) => {
     return (
         <div className='product-card' onClick={() => navigate(`/product/${product._id}`)}>
             <div className='product-img-wrapper'>
-                <img src="{product.img" alt="product.name" />
+                <img src={product.image} alt={product.name} />
             </div>
 
             <div className='product-info'>
@@ -43,10 +43,12 @@ const ProductCard = ({product}) => {
                     <span className={`stock-badge ${product.stock === 0 ? 'out' : ''}`}>
                         {product.stock === 0 ? 'Out of Stock' : `${product.stock} left`}
                     </span>
-
-                    <button className='btn btn-primary' onClick={handleAddToCart} disabled={product.stock === 0}>
-                        Add to Cart
-                    </button>
+                    {user && user.role === 'user' && (
+                        <button className='btn btn-primary' onClick={handleAddToCart} disabled={product.stock === 0}>
+                            Add to Cart
+                        </button>
+                    )
+                    }
                 </div>
             </div>
         </div>
