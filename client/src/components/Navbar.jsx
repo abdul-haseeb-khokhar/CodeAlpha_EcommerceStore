@@ -12,9 +12,6 @@ const Navbar = () => {
         logout()
         navigate('/login')
     }
-
-    console.log('Nav USER', user)
-    console.log('Name: ', user?.name)
     return (
         <nav className="navbar">
             {user ? (

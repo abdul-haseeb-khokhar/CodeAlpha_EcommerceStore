@@ -24,7 +24,6 @@ const login = () => {
                 method: 'Post', body: JSON.stringify({email, password})
             })
             console.log(data)
-            login(data)
             navigate('/')
         } catch (err) {
             setError(err.message)

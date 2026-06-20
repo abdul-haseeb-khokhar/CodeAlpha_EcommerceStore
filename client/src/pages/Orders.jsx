@@ -10,6 +10,7 @@ const statusColors = {
 }
 
 const Orders = () => {
+    console.log('Order component is rendering')
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -18,7 +19,9 @@ const Orders = () => {
         const fetchOrders = async () => {
             try {
                 const data = await fetchClient('/orders')
+                console.log(data)
                 setOrders(data)
+                console.log(orders)
             } catch (error) {
                 setError(error)
             }finally {
@@ -32,8 +35,7 @@ const Orders = () => {
     if(loading) return <p className="state-msg">Loading orders...</p>
     if(error) return <p className="error-msg" style={{padding: '40px'}}>{error}</p>
 
-    return
-    (
+    return(
         <div className="page-container">
             <h2 className="page-title">
                 My Orders

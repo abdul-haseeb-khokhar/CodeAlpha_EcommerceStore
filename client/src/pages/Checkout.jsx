@@ -21,6 +21,7 @@ const Checkout = () => {
         setError('')
 
         try {
+            console.log("Handle Place order is running")
             await fetchClient('/orders', {
                 method: 'POST',
                 body: JSON.stringify({
@@ -38,6 +39,7 @@ const Checkout = () => {
     }
 
     if(items.length === 0) {
+        console.log('Returning to home from checkout')
         navigate('/')
         return null
     }
