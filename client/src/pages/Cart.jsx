@@ -74,26 +74,26 @@ const Cart = () => {
             <div className="cart-wrapper">
                 <div className="cart-items">
                     {items.map(item => (
-                        <div className="cart-item" key={item.product._id}>
-                            <img src={item.product.image} alt={item.product.name} />
+                        <div className="cart-item" key={item.product}>
+                            <img src={item.imageAtPurchase} alt={item.nameAtPurchase} />
                             <div className="cart-item-info">
-                                <h4>{item.product.name}</h4>
+                                <h4>{item.nameAtPurchase}</h4>
                                 <p className="cart-item-price">
-                                    ${item.product.price.toFixed(2)}
+                                    ${item.priceAtPurchase.toFixed(2)}
                                 </p>
                             </div>
 
                             <div className="cart-item-qty">
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id, item.quantity - 1)}>-</button>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product, item.quantity - 1)}>-</button>
                                 <span>{item.quantity}</span>
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id, item.quantity + 1)}>+</button>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product, item.quantity + 1)}>+</button>
                             </div>
 
                             <p className="cart-item-total">
-                                ${(item.product.price * item.quantity).toFixed(2)}
+                                ${(item.priceAtPurchase * item.quantity).toFixed(2)}
                             </p>
 
-                            <button className="btn btn-danger" onClick={() => handleRemove(item.product._id)}>Remove</button>
+                            <button className="btn btn-danger" onClick={() => handleRemove(item.product)}>Remove</button>
                         </div>
                     ))}
                 </div>

@@ -66,10 +66,10 @@ const Orders = () => {
 
                             <div className="order-items">
                                 {order.items.map (item => (
-                                    <div className="order-item" key={item.product._id}>
-                                        <img src={item.product.image} alt={item.product.name} />
+                                    <div className="order-item" key={item.product}>
+                                        <img src={item.imageAtPurchase} alt={item.nameAtPurchase} />
                                         <div className="order-item-info">
-                                            <p>{item.product.name}</p>
+                                            <p>{item.nameAtPurchase}</p>
                                             <span>Qty: {item.quantity}</span>
                                         </div>
 

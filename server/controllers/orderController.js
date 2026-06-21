@@ -10,7 +10,7 @@ const placeOrder = async (req, res) => {
 
     // Get user's cart
     const cart = await Cart.findOne({ user: req.user._id })
-      .populate('items.product', 'name price stock');
+      .populate('items.product', 'name price image stock');
 
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({ message: 'Cart is empty' });
@@ -32,7 +32,9 @@ const placeOrder = async (req, res) => {
       orderItems.push({
         product: product._id,
         quantity: item.quantity,
-        priceAtPurchase: product.price  // snapshot the price
+        priceAtPurchase: product.price,  // snapshot the price
+        nameAtPurchase: product.name,
+        imageAtPurchase: product.image
       });
 
       totalPrice += product.price * item.quantity;
@@ -65,7 +67,6 @@ const placeOrder = async (req, res) => {
 const getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user._id })
-      .populate('items.product', 'name image price')
       .sort({ createdAt: -1 }); // newest first
 
     res.json(orders);
@@ -80,7 +81,6 @@ const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
       .populate('user', 'name email')
-      .populate('items.product', 'name price')
       .sort({ createdAt: -1 });
 
     res.json(orders);
