@@ -7,7 +7,6 @@ const Navbar = () => {
     const { user, logout } = useAuth()
     const { totalItems } = useCartStore()
     const navigate = useNavigate()
-
     const handleLogout = () => {
         logout()
         navigate('/login')
