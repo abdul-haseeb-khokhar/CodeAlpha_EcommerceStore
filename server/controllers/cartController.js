@@ -61,7 +61,6 @@ const addToCart = async (req, res) => {
 }
 
 const removeFromCart = async (req, res) => {
-    console.log('remove func is called')
     try {
         const cart = await Cart.findOne({ user: req.user._id })
         if (!cart) {
@@ -80,7 +79,6 @@ const removeFromCart = async (req, res) => {
     }
 }
 const updateCartItem = async (req, res) => {
-    console.log('update cart is called')
     try {
         const { quantity } = req.body
         const { productId } = req.params
@@ -92,7 +90,6 @@ const updateCartItem = async (req, res) => {
                 message: 'Cart not found'
             })
         }
-        console.log('product Id from frontend: ', productId)
         const itemIndex = cart.items.findIndex(
             item => item.product.toString() === productId
         )
@@ -102,7 +99,6 @@ const updateCartItem = async (req, res) => {
                 message: 'Item not found in cart'
             })
         }
-        console.log(quantity)
         if (quantity <= 0) {
             return removeFromCart(req, res)
         } else {

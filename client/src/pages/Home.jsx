@@ -20,7 +20,6 @@ const Home = () => {
             const data = await fetchClient(`/products?${query}`)
             setProducts(data)
         } catch(err) {
-            console.log(err)
             setError(err.message)
         }finally {
             setLoading(false)

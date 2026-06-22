@@ -10,7 +10,6 @@ const statusColors = {
 }
 
 const Orders = () => {
-    console.log('Order component is rendering')
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -19,9 +18,7 @@ const Orders = () => {
         const fetchOrders = async () => {
             try {
                 const data = await fetchClient('/orders')
-                console.log(data)
                 setOrders(data)
-                console.log(orders)
             } catch (error) {
                 setError(error)
             }finally {

@@ -21,7 +21,6 @@ const Checkout = () => {
         setError('')
 
         try {
-            console.log("Handle Place order is running")
             await fetchClient('/orders', {
                 method: 'POST',
                 body: JSON.stringify({
@@ -39,7 +38,6 @@ const Checkout = () => {
     }
 
     if(items.length === 0) {
-        console.log('Returning to home from checkout')
         navigate('/')
         return null
     }
@@ -79,14 +77,14 @@ const Checkout = () => {
 
                     <div className="checkout-items">
                         {items.map(item => (
-                            <div className="checkout-item" key={item.product}>
-                                <img src={item.product.image} alt={item.nameAtPurchase} />
+                            <div className="checkout-item" key={item.product._id}>
+                                <img src={item.product.image} alt={item.product.name} />
                                 <div className="checkout-item-info">
-                                    <p>{item.nameAtPurchase}</p>
+                                    <p>{item.product.name}</p>
                                     <span>Qty: {item.quantity}</span>
                                 </div>
                                 <p className="checkout-item-price">
-                                    ${(item.priceAtPurchase * item.quantity).toFixed(2)}
+                                    ${(item.product.price * item.quantity).toFixed(2)}
                                 </p>
                             </div>
                         ))}

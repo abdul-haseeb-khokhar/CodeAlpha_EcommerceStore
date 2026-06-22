@@ -64,7 +64,6 @@ const Cart = () => {
         )
     }
 
-    console.log(items)
     return (
         <div className="page-container">
             <h2 className="page-title">Your Cart</h2>
@@ -74,26 +73,26 @@ const Cart = () => {
             <div className="cart-wrapper">
                 <div className="cart-items">
                     {items.map(item => (
-                        <div className="cart-item" key={item.product}>
-                            <img src={item.imageAtPurchase} alt={item.nameAtPurchase} />
+                        <div className="cart-item" key={item.product._id}>
+                            <img src={item.product.image} alt={item.nameAtPurchase} />
                             <div className="cart-item-info">
-                                <h4>{item.nameAtPurchase}</h4>
+                                <h4>{item.product.name}</h4>
                                 <p className="cart-item-price">
-                                    ${item.priceAtPurchase.toFixed(2)}
+                                    ${item.product.price.toFixed(2)}
                                 </p>
                             </div>
 
                             <div className="cart-item-qty">
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product, item.quantity - 1)}>-</button>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id, item.quantity - 1)}>-</button>
                                 <span>{item.quantity}</span>
-                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product, item.quantity + 1)}>+</button>
+                                <button className="qty-btn" onClick={() => handleQuantityChange(item.product._id, item.quantity + 1)}>+</button>
                             </div>
 
                             <p className="cart-item-total">
-                                ${(item.priceAtPurchase * item.quantity).toFixed(2)}
+                                ${(item.product.price * item.quantity).toFixed(2)}
                             </p>
 
-                            <button className="btn btn-danger" onClick={() => handleRemove(item.product)}>Remove</button>
+                            <button className="btn btn-danger" onClick={() => handleRemove(item.product._id)}>Remove</button>
                         </div>
                     ))}
                 </div>
