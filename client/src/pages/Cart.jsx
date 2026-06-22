@@ -64,7 +64,6 @@ const Cart = () => {
         )
     }
 
-    console.log(items)
     return (
         <div className="page-container">
             <h2 className="page-title">Your Cart</h2>
@@ -75,7 +74,7 @@ const Cart = () => {
                 <div className="cart-items">
                     {items.map(item => (
                         <div className="cart-item" key={item.product._id}>
-                            <img src={item.product.image} alt={item.product.name} />
+                            <img src={item.product.image} alt={item.nameAtPurchase} />
                             <div className="cart-item-info">
                                 <h4>{item.product.name}</h4>
                                 <p className="cart-item-price">

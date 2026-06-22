@@ -10,7 +10,6 @@ const statusColors = {
 }
 
 const Orders = () => {
-    console.log('Order component is rendering')
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -19,9 +18,7 @@ const Orders = () => {
         const fetchOrders = async () => {
             try {
                 const data = await fetchClient('/orders')
-                console.log(data)
                 setOrders(data)
-                console.log(orders)
             } catch (error) {
                 setError(error)
             }finally {
@@ -66,10 +63,10 @@ const Orders = () => {
 
                             <div className="order-items">
                                 {order.items.map (item => (
-                                    <div className="order-item" key={item.product._id}>
-                                        <img src={item.product.image} alt={item.product.name} />
+                                    <div className="order-item" key={item.product}>
+                                        <img src={item.imageAtPurchase} alt={item.nameAtPurchase} />
                                         <div className="order-item-info">
-                                            <p>{item.product.name}</p>
+                                            <p>{item.nameAtPurchase}</p>
                                             <span>Qty: {item.quantity}</span>
                                         </div>
 

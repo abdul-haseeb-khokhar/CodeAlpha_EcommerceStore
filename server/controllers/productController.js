@@ -65,7 +65,6 @@ const createProduct = async (req, res) => {
 // @route  PUT /api/products/:id
 // @access Admin only
 const updateProduct = async (req, res) => {
-  console.log('Update Product function is called')
   try {
     const product = await Product.findById(req.params.id);
 
